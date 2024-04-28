@@ -1,0 +1,8 @@
+Date/Time: 2023-12-20 18:45:22
+Web Server: 192.168.1.102
+Source IP: 203.0.113.42
+Protocol: HTTP
+Event Type: Suspicious Login Attempt
+Username: admin
+Status: Failed
+Description: Multiple failed login attempts from external IP 203.0.113.42 to web server 192.168.1.102. The username 'admin' was targeted—possible brute-force attack. Immediate investigation and security measures are recommended.
