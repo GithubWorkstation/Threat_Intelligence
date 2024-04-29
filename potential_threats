@@ -1,89 +1,20 @@
-1.Suspicious Login Attempt
-Date/Time: 2023-12-20 18:45:22
-Web Server: 192.168.1.102
-Source IP: 203.0.113.42
-Protocol: HTTP
-Event Type: Suspicious Login Attempt
-Username: admin
-Status: Failed
-Description: Multiple failed login attempts from external IP 203.0.113.42 to web server 192.168.1.102 targeting the username 'admin'. Possible brute-force attack. Immediate investigation and security measures are recommended. [1]
-2.High Outbound Traffic
-Date/Time: 2023-12-20 09:15:30
-User: john_doe
-Source IP: 192.168.1.101
-Destination IP: 203.0.113.42
-Protocol: TCP
-Port: 443
-Traffic Volume: 500 MB
-Description: High outbound traffic observed from user john_doe's system (192.168.1.101) to IP address 203.0.113.42 on port 443.
-3.Unusually High Traffic
-Date/Time: 2023-12-20 09:20:45
-User: alice_smith
-Source IP: 192.168.1.102
-Destination IP: 203.0.113.42
-Protocol: UDP
-Port: 8080
-Traffic Volume: 700 MB
-Description: Unusually high UDP traffic from user alice_smith's system (192.168.1.102) to IP address 203.0.113.42 on port 8080.
-4.Elevated Outbound Traffic
-Date/Time: 2023-12-20 09:25:10
-User: robert_jones
-Source IP: 192.168.1.103
-Destination IP: 203.0.113.42
-Protocol: TCP
-Port: 22
-Traffic Volume: 1.2 GB
-Description: Elevated outbound TCP traffic from user robert_jones's system (192.168.1.103) to IP address 203.0.113.42 on port 22.
-5.Unusual ICMP Traffic
-Date/Time: 2023-12-20 09:30:22
-User: emily_wang
-Source IP: 192.168.1.104
-Destination IP: 203.0.113.42
-Protocol: ICMP
-Traffic Volume: 800 MB
-Description: Unusual ICMP traffic observed from user emily_wang's system (192.168.1.104) to IP address 203.0.113.42.
-6.High Outbound UDP Traffic
-Date/Time: 2023-12-20 09:35:40
-User: michael_davis
-Source IP: 192.168.1.105
-Destination IP: 203.0.113.42
-Protocol: UDP
-Port: 53
-Traffic Volume: 600 MB
-Description: High outbound UDP traffic from user michael_davis's system (192.168.1.105) to IP address 203.0.113.42 on port 53.
-7.Elevated Outbound TCP Traffic
-Date/Time: 2023-12-20 09:40:55
-User: sarah_miller
-Source IP: 192.168.1.106
-Destination IP: 203.0.113.42
-Protocol: TCP
-Port: 80
-Traffic Volume: 900 MB
-Description: Elevated outbound TCP traffic from user sarah_miller's system (192.168.1.106) to IP address 203.0.113.42 on port 80.
-8.Abnormally High UDP Traffic
-Date/Time: 2023-12-20 09:45:12
-User: kevin_wilson
-Source IP: 192.168.1.107
-Destination IP: 203.0.113.42
-Protocol: UDP
-Port: 123
-Traffic Volume: 1.5 GB
-Description: Abnormally high UDP traffic from user kevin_wilson's system (192.168.1.107) to IP address 203.0.113.42 on port 123.
-9.Significantly Elevated Outbound TCP Traffic
-Date/Time: 2023-12-20 09:50:30
-User: lisa_jackson
-Source IP: 192.168.1.108
-Destination IP: 203.0.113.42
-Protocol: TCP
-Port: 8080
-Traffic Volume: 1.8 GB
-Description: Significantly elevated outbound TCP traffic from user lisa_jackson's system (192.168.1.108) to IP address 203.0.113.42 on port 8080.
-10.Extremely High Outbound TCP Traffic
-Date/Time: 2023-12-20 10:00:00
-User: jessica_martin
-Source IP: 192.168.1.110
-Destination IP: 203.0.113.42
-Protocol: TCP
-Port: 443
-Traffic Volume: 2.5 GB
-Description: Extremely high outbound TCP traffic from user jessica_martin's system (192.168.1.110) to IP address 203.0.113.42 on port 443.
+1.Brute-Force Attack:
+Log: The first log indicates multiple failed login attempts from the external IP 203.0.113.42 targeting the 'admin' username on the web server 192.168.1.102. This pattern is indicative of a brute-force attack attempting to gain unauthorized access by guessing the password.
+2.Data Exfiltration:
+Logs: All other logs from 1 to 10 show significant amounts of data being sent to the same external IP address (203.0.113.42) over various protocols and ports. This suggests a coordinated attempt at data exfiltration from multiple systems within the network. Here's a breakdown:
+Logs 1, 2, and 3 show high volumes of traffic over HTTPS (port 443), which could be used to disguise exfiltration as normal encrypted web traffic.
+Log 4 involving ICMP (used for ping and other network diagnostic functions) with high traffic volume is unusual and could be a method to send data out without arousing suspicion.
+Log 5 shows high traffic on DNS port (53), which is another common channel for covert data exfiltration.
+Logs 6, 8, and 10 show large data transfers over HTTP (port 80) and other web service ports (8080), common ports that might be allowed through firewalls but can also be exploited for data transfer.
+Logs 7 and 9 show significant UDP traffic over NTP (port 123) and Syslog (port 514), both of which are unconventional for large data transfers and point to potential misuse.
+3.Potential Command and Control Communication:
+The consistent communication with a single external IP across multiple systems and protocols raises the possibility of command and control (C2) activity. Attackers could be using compromised systems to receive commands or exfiltrate data.
+4.Possible Malware or Persistent Threat:
+The variety of protocols and ports used, along with the volume of traffic, suggests that the affected systems might be compromised by malware designed to steal data or maintain persistence in the network.
+
+Recommended Immediate Actions:
+1.Containment: Block all traffic to and from the external IP 203.0.113.42 at the firewall level to stop further data loss and prevent commands from reaching any malware that might be present on the network.
+2.Investigation: Conduct a thorough forensic analysis on the affected systems to identify any malware, scripts, or unauthorized software that could be facilitating the exfiltration.
+3.Password Security: Immediately enforce a network-wide password change, especially for critical accounts and systems that have shown suspicious activities.
+4.Network Segmentation: Review and enhance network segmentation to limit the spread and impact of such incidents.
+Monitoring and Alerting: Increase monitoring on network traffic, especially focusing on large or unusual data transfers and external connections.
